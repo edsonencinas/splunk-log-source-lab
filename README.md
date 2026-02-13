@@ -220,3 +220,4 @@ ssh fakeuser@localhost
 ```
 index=linux_auth "Failed password"
 ```
+<img src="screenshots/splunk-test-event.png" width="800">
