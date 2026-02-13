@@ -218,6 +218,6 @@ ssh fakeuser@localhost
 ```
 **Check in Splunk**
 ```
-index=linux_auth "Failed password"
+index=linux_auth "Invalid user"
 ```
 <img src="screenshots/splunk-test-event.png" width="800">
