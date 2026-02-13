@@ -95,6 +95,8 @@ Login:
 - Username : admin
 - Password : set during install
 
+<img src="https://github.com/edsonencinas/splunk-log-source-lab/screenshots/splunk-enterprise.png" width="800">
+
 ### 8. Enable Auto Start
 Exit `splunk` user first:
 ```bash
@@ -121,9 +123,6 @@ Enable firewall:
 sudo ufw enable
 sudo ufw status verbose
 ```
-
-
-
 
 ## Log Source VM Setup (Splunk Universal Forwarder)
 
