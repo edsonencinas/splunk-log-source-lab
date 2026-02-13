@@ -7,7 +7,7 @@ It simulates Linux log collection from a **Log Source VM** using the **Splunk Un
 
 This project is designed for **SOC learning, threat simulation, and portfolio showcase**.
 
----
+<img src="docs/SOC-lab-design-diagram.png" width="800">
 
 ## Architecture
 ```
@@ -39,8 +39,6 @@ Splunk Server VM (Ubuntu 22.04)
    - **GCP Firewall:** Controls ingress/egress traffic between VMs
    - **UFW OS Firewall:** Secures the VM at the operating system level
 
----
-
 ## Prerequisites
 
 - Google Cloud account
@@ -48,8 +46,6 @@ Splunk Server VM (Ubuntu 22.04)
   - **Splunk Server VM:** 2 vCPU, 8 GB RAM (for lab)
   - **Log Source VM:** 1 vCPU, 2 GB RAM
 - Internet access to download Splunk packages
-
----
 
 ## Splunk Server VM Setup
 
