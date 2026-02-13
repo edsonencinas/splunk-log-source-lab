@@ -22,4 +22,3 @@ Splunk Server VM (Ubuntu 22.04)
 ├─ Web UI (port 8000)
 └─ Dashboards / Searches / Alerts
 ```
-
