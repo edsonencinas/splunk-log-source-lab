@@ -95,7 +95,7 @@ Login:
 - Username : admin
 - Password : set during install
 
-<img src="https://github.com/edsonencinas/splunk-log-source-lab/screenshots/splunk-enterprise.png" width="800">
+<img src="screenshots/splunk-ui.png" width="800">
 
 ### 8. Enable Auto Start
 Exit `splunk` user first:
