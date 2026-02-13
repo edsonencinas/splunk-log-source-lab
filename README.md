@@ -102,6 +102,29 @@ exit
 sudo /opt/splunk/bin/splunk enable boot-start -user splunk
 ```
 
+### 9. 🔥 UFW Configuration for Splunk Server VM (Firewall)
+```bash
+# SSH
+sudo ufw allow from YOUR_IP to any port 22 proto tcp
+# Splunk Web
+sudo ufw allow from YOUR_IP to any port 8000 proto tcp
+# Splunk Forwarders
+sudo ufw allow from FORWARDER_IP to any port 9997 proto tcp
+```
+Don't forget the Default Deny rules.
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
+Enable firewall:
+```bash
+sudo ufw enable
+sudo ufw status verbose
+```
+
+
+
+
 ## Log Source VM Setup (Splunk Universal Forwarder)
 
 ### 1. SSH into Log Source VM and Update
@@ -110,7 +133,7 @@ ssh -i SSH-KEY.pub user@LOG_SOURCE_IP
 sudo apt update && sudo apt upgrade -y
 ```
 
-### 2. Download Splunk Universal Forwarder
+### 2. 📦 Download Splunk Universal Forwarder
 ```bash
 wget -O splunkforwarder-10.2.0-d749cb17ea65-linux-amd64.deb "DOWNLOAD LINK"
 ```
@@ -121,10 +144,74 @@ wget -O splunkforwarder-10.2.0-d749cb17ea65-linux-amd64.deb "DOWNLOAD LINK"
 sudo useradd -m splunkfwd
 sudo passwd splunkfwd
 ```
-### 4. Install Splunk Universal Forwarder
+### 4. ⚙️ Install Splunk Universal Forwarder
 ```
 sudo dpkg -i splunkforwarder.deb
 ```
+### 5. 🔐 Fix Ownership (Important Step)
+```bash
+sudo chown -R splunkfwd:splunkfwd /opt/splunkforwarder
+```
 
+### 6. ▶️ Start Forwarder for the First Time
+```bash
+# Switch to Splunk Forwarder User.
+sudo su - splunkfwd
+/opt/splunkforwarder/bin/splunk start --accept-license
+```
+- Create another Administrator username and password and keep it securely.
 
+### 7. 🔄 Stop Splunk Forwarder to Enable Boot Start (Run as Root)
+-Exit as `splunkfwd` user:
+```bash
+exit
+sudo -u splunkfwd /opt/splunkforwarder/bin/splunk stop
+sudo /opt/splunkforwarder/bin/splunk enable boot-start -user splunkfwd
+```
+
+### 8. 🌐 Add Splunk Server (Indexer)
+Switchback to user `splunkfwd`:
+```bash
+sudo su - splunkfwd
+```
+```bash
+/opt/splunkforwarder/bin/splunk add forward-server SPLUNK_SERVER_IP:9997
+```
+
+### 9. 📥 Add Linux Auth Logs (SOC Use Case)
+```bash
+/opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log -index linux_auth -sourcetype linux_secure
+```
+
+### 10. 🔁 Restart Splunk Forwarder
+```bash
+/opt/splunkforwarder/bin/splunk add forward-server SPLUNK_SERVER_IP:9997
+```
+
+### 11. ✅ Verify Splunk Forwarder Status
+```bash
+/opt/splunkforwarder/bin/splunk list forward-server
+```
+Expected output:
+```bash
+Active forwards:
+  SPLUNK_SERVER_IP:9997
+```
+### 12. UFW Firewall Configuration for Log Source VM
+Allow your local machine to SSH the Log Source VM
+```bash
+# SSH
+sudo ufw allow from YOUR_IP to any port 22 proto tcp
+# Default deny
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+# Enable  the firewall
+sudo ufw enable
+sudo ufw status verbose
+```
+### 13. Enable Splunk Server to Listen on port 9997
+Run on Splunk Server VM
+```bash
+sudo -u splunk /opt/splunk/bin/splunk enable listen 9997
+```
 
