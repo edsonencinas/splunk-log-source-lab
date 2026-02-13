@@ -7,21 +7,20 @@ It simulates Linux log collection from a **Log Source VM** using the **Splunk Un
 
 This project is designed for **SOC learning, threat simulation, and portfolio showcase**.
 
-<img src="docs/SOC-lab-design-diagram.png" width="800">
-
 ## Architecture
 ```
-Log Source VM (Ubuntu 22.04)
+Log Source VM (Debian 12 Bookworm)
 ├─ Splunk Universal Forwarder (splunkfwd user)
 ├─ Monitors: /var/log/auth.log
 └─ Forwards logs → Splunk Server VM (9997)
 
-Splunk Server VM (Ubuntu 22.04)
+Splunk Server VM (Debian 12 Bookworm)
 ├─ Splunk Enterprise Free
 ├─ Receives logs (port 9997)
 ├─ Web UI (port 8000)
 └─ Dashboards / Searches / Alerts
 ```
+<img src="docs/SOC-lab-design-diagram.png" width="800">
 
 **Components:**
 
@@ -204,9 +203,20 @@ sudo ufw default allow outgoing
 sudo ufw enable
 sudo ufw status verbose
 ```
+
+
 ### 13. Enable Splunk Server to Listen on port 9997
 Run on Splunk Server VM
 ```bash
 sudo -u splunk /opt/splunk/bin/splunk enable listen 9997
 ```
 
+## Generate Test Logs
+**On Log Source VM:**
+```bash
+ssh fakeuser@localhost
+```
+**Check in Splunk**
+```
+index=linux_auth "Failed password"
+```
