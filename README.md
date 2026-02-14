@@ -195,7 +195,7 @@ sudo su - splunkfwd
 
 ### 10. 🔁 Restart Splunk Forwarder
 ```bash
-/opt/splunkforwarder/bin/splunk add forward-server SPLUNK_SERVER_IP:9997
+/opt/splunkforwarder/bin/splunk restart
 ```
 
 ### 11. ✅ Verify Splunk Forwarder Status
