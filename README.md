@@ -46,10 +46,10 @@ Splunk Server VM (Debian 12 Bookworm)
   - **Log Source VM:** 1 vCPU, 2 GB RAM
 - Internet access to download Splunk packages
 
-Splunk Enterprise Package
+**Splunk Enterprise Package**
 <img src="screenshots/splunk-enterprise.png" width="800">
 
-Splunk Universal Forwarder Package
+**Splunk Universal Forwarder Package**
 <img src="screenshots/splunk-univeral-forwarder.png" width="800">
 
 ## Splunk Server VM Setup
