@@ -230,7 +230,7 @@ sudo -u splunk /opt/splunk/bin/splunk enable listen 9997
 ## 🧪 Generate Test Logs
 **On Log Source VM:**
 ```bash
-ssh fakeuser@localhost
+for i in {1..5}; do ssh wronguser@localhost; done
 ```
 **Check in Splunk**
 ```
