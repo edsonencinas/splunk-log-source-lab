@@ -227,3 +227,25 @@ ssh fakeuser@localhost
 index=linux_auth "Invalid user"
 ```
 <img src="screenshots/splunk-test-event.png" width="800">
+
+## Future Expansion
+This lab can be extended to simulate a full enterprise SOC environment. Future improvements include:
+- Windows Endpoint Logging: Deploy Windows VMs with Splunk Universal Forwarder and ingest Security, PowerShell, and Sysmon logs to detect brute-force attacks, privilege escalation, and lateral movement.
+- **Additional Linux Telemetry**: Ingest syslog, auditd, and system logs to improve visibility into command execution and persistence techniques.
+- **Network and Cloud Logs**: Integrate GCP VPC Flow Logs, firewall logs, and web server logs to detect network anomalies and web-based attacks.
+- **Detection & Alerting**: Build correlation searches, alerts, and SOC dashboards for authentication anomalies and admin activity monitoring.
+- **Automation & SOAR**: Automate response actions (e.g., blocking IPs, sending alerts) using scripts or orchestration tools.
+- **Threat Intelligence & MITRE Mapping**: Enrich logs with threat intel feeds and map detections to MITRE ATT&CK techniques.
+
+These enhancements will evolve the lab into a comprehensive detection engineering and SOC simulation platform.
+
+## Conclusion
+This project demonstrates a complete end-to-end deployment of a **Splunk-based SIEM lab on Google Cloud Platform**, covering infrastructure provisioning, security hardening, log ingestion, and validation. By building both a **Splunk Enterprise server** and a **Linux log source with Universal Forwarder**, this lab replicates a real-world SOC ingestion pipeline where telemetry is collected, transported, and indexed for security monitoring.
+
+Key outcomes of this project include:
+- Designing a secure cloud-based SIEM architecture with network segmentation and firewall controls
+- Implementing OS-level and cloud-level firewall rules to restrict management and data ingestion traffic
+- Deploying Splunk Enterprise and Universal Forwarder using dedicated service accounts to follow least-privilege best practices
+- Configuring log monitoring for Linux authentication logs and validating ingestion through Splunk searches
+
+Overall, this project showcases practical SIEM engineering skills, cloud security fundamentals, and SOC operational workflows—skills directly applicable to security analyst, detection engineer, and cloud security roles.
