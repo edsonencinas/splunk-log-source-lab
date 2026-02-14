@@ -5,7 +5,7 @@
 This project demonstrates a **basic Security Operations Center (SOC) lab** using Splunk SIEM.  
 It simulates Linux log collection from a **Log Source VM** using the **Splunk Universal Forwarder**, forwarding authentication logs to a **Splunk Server VM** hosted on **Google Cloud Platform (GCP)**.
 
-This project is designed for **SOC learning, threat simulation, and portfolio showcase**.
+This project is designed for **SOC learning, industry best practices, and threat simulation**.
 
 ## 🗺️ Architecture
 ```
@@ -54,7 +54,7 @@ Splunk Server VM (Debian 12 Bookworm)
 
 ## Splunk Server VM and Log Source VM Creation Guide
 Link to VMs Setup guide:
-[GCP Setup Guide](gcp-setup/setup-guide.md)
+[GCP VMs Setup Guide](gcp-setup/setup-guide.md)
 
 ***Note: Create the required VMs first before proceeding to the next step***
 
