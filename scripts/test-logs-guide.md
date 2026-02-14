@@ -29,7 +29,6 @@ tail -f /var/log/auth.log
 ## ✅ Verify in Splunk
 Search in Splunk:
 ```spl
-index=linux_auth sourcetype=linux_secure "Accepted password"
-index=linux_auth sourcetype=linux_secure "Failed passwor"
+index=linux_auth sourcetype=linux_secure "Failed password"
 index=linux_auth sourcetype=linux_secure "Invalid user"
 ```
