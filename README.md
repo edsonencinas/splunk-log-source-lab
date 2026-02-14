@@ -22,7 +22,7 @@ Splunk Server VM (Debian 12 Bookworm)
 ```
 <img src="docs/SOC-lab-design-diagram.png" width="800">
 
-**Components:**
+** 🧩Components:**
 
 1. **Splunk Enterprise Server VM**
    - Receives logs from forwarders
