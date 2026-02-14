@@ -1,13 +1,13 @@
 # Splunk Log Source Lab on GCP - Linux Forwarder to Splunk SIEM
 
-## Project Overview
+## 💼 Project Overview
 
 This project demonstrates a **basic Security Operations Center (SOC) lab** using Splunk SIEM.  
 It simulates Linux log collection from a **Log Source VM** using the **Splunk Universal Forwarder**, forwarding authentication logs to a **Splunk Server VM** hosted on **Google Cloud Platform (GCP)**.
 
 This project is designed for **SOC learning, threat simulation, and portfolio showcase**.
 
-## Architecture
+## 🗺️ Architecture
 ```
 Log Source VM (Debian 12 Bookworm)
 ├─ Splunk Universal Forwarder (splunkfwd user)
@@ -38,7 +38,7 @@ Splunk Server VM (Debian 12 Bookworm)
    - **GCP Firewall:** Controls ingress/egress traffic between VMs
    - **UFW OS Firewall:** Secures the VM at the operating system level
 
-## Prerequisites
+## 📌 Prerequisites
 
 - Google Cloud account (Free Trial with $300 credit for 90 days)
 - Two Ubuntu VMs:
@@ -53,15 +53,19 @@ Splunk Server VM (Debian 12 Bookworm)
 <img src="screenshots/splunk-univeral-forwarder.png" width="800">
 
 ## Splunk Server VM Setup
+### 1. 🔐 SSH into Splunk Server VM
+```bash
+ssh -i PATH_TO_SSH-KEY.pub user@SPLUNK-SERVER_IP
+```
 
-### 1. Update system and install dependencies
+### 2. 🔄 Update system and Install UFW Firewall
 
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install wget curl ufw -y
 ```
 
-### 3. Install Splunk Enterprise
+### 3. 📦 Install Splunk Enterprise
 
 ```bash
 # Sign up and download Splunk Enterprise Free trial package : https://www.splunk.com/en_us/download.html 
@@ -70,16 +74,16 @@ wget -O splunk-10.x.x.deb 'DOWNLOAD LINK'
 # Install
 sudo dpkg -i splunk-10.x.x.deb
 ```
-
+### 4. 👤 Create the Splunk user
 ```bash
 sudo useradd -m splunk
 sudo passwd splunk
 ```
-### 5. Fix ownership
+### 5. 🔧 Fix Ownership
 ```bash
 sudo chown -R splunk:splunk /opt/splunk
 ```
-### 6. Start Splunk ad dedicated user
+### 6. ▶️ Start Splunk and dedicated user
 ```bash
 sudo su - splunk
 /opt/splunk/bin/splunk start --accept-license
@@ -87,7 +91,7 @@ sudo su - splunk
 - When prompted, enter/create the Splunk administrator username and password, and store them securely.
 - Note: Splunk Enterprise runs as `splunk` user. Do **NOT run as root** in production.
 
-### 7. Access Splunk Web UI
+### 7. 🌐 Access Splunk Web UI for the First Time
 Find VM external IP:
 ```bash
 http://YOUR_VM_IP:8000
@@ -98,7 +102,7 @@ Login:
 
 <img src="screenshots/splunk-ui.png" width="800">
 
-### 8. Enable Auto Start
+### 8. ♻️ Enable Auto Start
 Exit `splunk` user first:
 ```bash
 exit
@@ -129,7 +133,7 @@ sudo ufw status verbose
 
 ### 1. SSH into Log Source VM and Update
 ```bash
-ssh -i SSH-KEY.pub user@LOG_SOURCE_IP
+ssh -i PATH_TO_SSH-KEY.pub user@LOG_SOURCE_IP
 sudo apt update && sudo apt upgrade -y
 ```
 
@@ -138,7 +142,7 @@ sudo apt update && sudo apt upgrade -y
 wget -O splunkforwarder-10.2.0-d749cb17ea65-linux-amd64.deb "DOWNLOAD LINK"
 ```
 
-### 3. Create Dedicated Forwarder User (CRITICAL)
+### 3. 👤 Create Dedicated Forwarder User (CRITICAL)
 **Never run forwarder as root
 ```bash
 sudo useradd -m splunkfwd
@@ -197,7 +201,7 @@ Expected output:
 Active forwards:
   SPLUNK_SERVER_IP:9997
 ```
-### 12. UFW Firewall Configuration for Log Source VM
+### 12. ⚙️ UFW Firewall Configuration for Log Source VM
 Allow your local machine to SSH the Log Source VM
 ```bash
 # SSH
@@ -211,13 +215,13 @@ sudo ufw status verbose
 ```
 
 
-### 13. Enable Splunk Server to Listen on port 9997
+### 13. ✅ Enable Splunk Server to Listen on port 9997
 Run on Splunk Server VM
 ```bash
 sudo -u splunk /opt/splunk/bin/splunk enable listen 9997
 ```
 
-## Generate Test Logs
+## 🧪 Generate Test Logs
 **On Log Source VM:**
 ```bash
 ssh fakeuser@localhost
@@ -228,7 +232,7 @@ index=linux_auth "Invalid user"
 ```
 <img src="screenshots/splunk-test-event.png" width="800">
 
-## Future Expansion
+## ➕ Future Expansion
 This lab can be extended to simulate a full enterprise SOC environment. Future improvements include:
 - Windows Endpoint Logging: Deploy Windows VMs with Splunk Universal Forwarder and ingest Security, PowerShell, and Sysmon logs to detect brute-force attacks, privilege escalation, and lateral movement.
 - **Additional Linux Telemetry**: Ingest syslog, auditd, and system logs to improve visibility into command execution and persistence techniques.
@@ -239,7 +243,7 @@ This lab can be extended to simulate a full enterprise SOC environment. Future i
 
 These enhancements will evolve the lab into a comprehensive detection engineering and SOC simulation platform.
 
-## Conclusion
+## ✨ Conclusion
 This project demonstrates a complete end-to-end deployment of a **Splunk-based SIEM lab on Google Cloud Platform**, covering infrastructure provisioning, security hardening, log ingestion, and validation. By building both a **Splunk Enterprise server** and a **Linux log source with Universal Forwarder**, this lab replicates a real-world SOC ingestion pipeline where telemetry is collected, transported, and indexed for security monitoring.
 
 Key outcomes of this project include:
