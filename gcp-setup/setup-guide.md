@@ -77,5 +77,6 @@ ssh user@splunk-server-ip
 
 # Log Source VM
 ssh user@log-source-ip
+```
 
 ***Note: Usually I add my machine's public key to GCP. Adding your public key at project level grant you all access to all current and future VM instances. Less hastle for you.***
