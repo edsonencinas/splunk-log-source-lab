@@ -52,6 +52,12 @@ Splunk Server VM (Debian 12 Bookworm)
 ### Splunk Universal Forwarder
 <img src="screenshots/splunk-univeral-forwarder.png" width="800">
 
+## Splunk Server VM and Log Source VM Creation Guide
+Link to VMs Setup guide:
+[GCP Setup Guide](gcp-setup/setup-guide.md)
+
+***Note: Create the required VMs first before proceeding to the next step***
+
 ## Splunk Server VM Setup
 ### 1. 🔐 SSH into Splunk Server VM
 ```bash
